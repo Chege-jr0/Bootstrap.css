@@ -1,0 +1,72 @@
+//Script tag with the jQuery classes//
+//The ready function runs only after the DOM has been fully loaded
+//The addClass target the class with inbuilt methods of the jQuery
+//While using the by type: $("button"), by class: $(".btn"), and by id $("#target1").
+<script>
+  $(document).ready(function() {
+    $("button").addClass("animated bounce");
+    $(".well").addClass("animated shake");
+    $("#target3").addClass("animated fadeOut");
+
+//In as much as we can add class we cam also remove class using the function removeClass()
+ $("button").removeClass("btn-default")
+
+//You can also change the color of your target using the css function
+$("#target1").css("color", "red");
+
+//You can also disable the property of an element in lets say a button
+$("#target1).prop("disable", true);
+
+//You can also remove the html element
+ $("#target4").remove();
+
+//You can also append the class to another div in html using the appendTo()
+$("#target4").appendTo("#right-well");
+
+//You can also clone an element using the clone() and appendTo another element and using two functions is called function chaininng
+$("#target5").clone().appendTo("#left-well");
+
+//You can also target the parent element using the parent() function
+$("#target1").parent().css("background-color", "red")
+
+//Just like acessing the parent you can also access the children of a division
+$("#right-well").children().css("color","orange");
+
+//You can also use the css selector(nth-child) classes to target precisely what you want
+$(".target:nth-child(2)").addClass("animated bounce");
+
+//You can also target elements based on their position using the odd and even
+//Also note that jQuery is zero-index based in that the position 1 would be the index 0 and position 2 would index 1
+//for odd numbers
+$(".target:odd").addClass("animated shake");
+//for even numbers
+$(".target:even").addClass("animated shake");
+
+//We can add the body element the classes animated and hinged to make it dramatic and boy oh boy it is dramatic
+//It just drops on the floor like a boneless chicken
+$("body").addClass("animated hinge");
+
+  });
+</script>
+<!--Code below this line should not be changed-->
+<div class="container-fluid">
+  <h3 class="text-primary text-center">jQuery Playground</h3>
+  <div class="row">
+    <div class="col-xs-6">
+      <h4>#left-well</h4>
+      <div class="well" id="left-well">
+        <button class="btn btn-default target" id="target1">#target1</button>
+        <button class="btn btn-default target" id="target2">#target2</button>
+        <button class="btn btn-default target" id="target3">#target3</button>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <h4>#right-well</h4>
+      <div class="well" id="right-well">
+        <button class="btn btn-default target" id="target4">#target4</button>
+        <button class="btn btn-default target" id="target5">#target5</button>
+        <button class="btn btn-default target" id="target6">#target6</button>
+      </div>
+    </div>
+  </div>
+</div>
