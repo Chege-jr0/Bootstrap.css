@@ -1,0 +1,92 @@
+//The meaning of SASS is syntactically Awesome StyleSheets
+//SASS allows the neesting of CSS styles.
+//In SASS, A mixin is a group of declarations that can be reused throughout the stylesheet
+//Sass can be used to set different prefixes for compatibility with different browsers
+@mixin border-radius($radius){
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+ and then use the include to access the border-radius lets say the div with id awesome
+#awesome {
+  @include border-radius (15px);
+  //keep in mind the rules about css in the prevoius course
+}
+
+
+//You can also use the mixin to set the border-property using an if else statement but its a little different from the one we are used to
+   @mixin border-stroke($val) {
+   @if $val == light {
+     border: 1px solid black;
+   } 
+   @else if $val == medium {
+     border: 3px solid black;
+   } 
+   @else if $val == heavy {
+     border: 6px solid black;
+   } 
+   @else {
+     border: none;
+   }
+  
+
+///In SASS you can also use the for loop in creating the text classes but its a littele different than the one we are used to especially the condition part.
+  //This gives the text class a font-size of 15px mutiplied by the class number.
+  //The from and through keywords set the condition for the for loop
+  @for $j from 1 through 6{
+  .text-#{$j} { font-size: 15px * $j;}
+  //the html being manipulated
+<p class="text-1">Hello</p>
+<p class="text-2">Hello</p>
+<p class="text-3">Hello</p>
+<p class="text-4">Hello</p>
+<p class="text-5">Hello</p>
+
+
+
+  //Each itemm
+  //The each item allows you to iterate lists or map based on each item in the list or maps
+  //Cool isnt it
+  @each $color in blue, black, red{
+  .#{$color}-bg {background-color: $color;}
+  }
+  //the html being manipulated
+<div class="blue-bg"></div>
+<div class="black-bg"></div>
+<div class="red-bg"></div>
+
+  
+
+//While loop
+//You can also the while to add css to a particular class
+//We begin the intialization at text number 1
+//We want to set the font-size to 15px mutiplied by the number of the text id
+// We also want to ensure the loop is not infinite by using the last line
+  $x: 1;
+  @while $x <= 5 {
+  .text-#{$x} {font-size: 15px * $x;}
+  $x: $x+1;
+ }
+//The html file being manipulated
+<p class="text-1">Hello</p>
+<p class="text-2">Hello</p>
+<p class="text-3">Hello</p>
+<p class="text-4">Hello</p>
+<p class="text-5">Hello</p>
+
+
+//In scss the file extension for Sass one can import one file using the import keyword
+//When importing we do not use the file extension or an underscore infront of it
+//@import variables//
+
+//Also we can build up on another css class using the extend keyword and add styles to the css file
+//This class info-important builds up on the class info and extends on the class info and also adds the background-color property and set it to magenta
+    .info-important{
+        @extend .info;
+        background-color: magenta;
+      }
+
+
+
+
