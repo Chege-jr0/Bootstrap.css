@@ -1,0 +1,81 @@
+//In react we can also create an event handler in react like the method below
+              class ControlledInput extends React.Component {
+                constructor(props) {
+                  super(props);
+                  this.state = {
+                    input: ''
+                  };
+                  // Change code below this line
+               this.handleChange = this.handleChange.bind(this);
+                  // Change code above this line
+                }
+                // Change code below this line
+                    handleChange(event){
+                    this.setState({
+                      input: event.target.value
+                      });    
+              
+                    }
+                // Change code above this line
+                render() {
+                  return (
+                    <div>
+                      { /* Change code below this line */}
+                     <input value={this.state.input} onChange= {this.handleChange}/>
+                      { /* Change code above this line */}
+                      <h4>Controlled Input:</h4>
+                      <p>{this.state.input}</p>
+                    </div>
+                  );
+                }
+              };
+//We have set the input  for the event handler to the input variable and then set the state to the state variable.
+//When you type in the input box the text is processed by handleChange()method, set as the input property in the local state and rendered as the value in input value in the local state.
+
+
+
+
+//We can create a file that takes in the content of a form and submit it to display it in the form below
+//The handleSubmit function takes in the content and passes it to the form below
+                  class MyForm extends React.Component {
+                    constructor(props) {
+                      super(props);
+                      this.state = {
+                        input: '',
+                        submit: ''
+                      };
+                      this.handleChange = this.handleChange.bind(this);
+                      this.handleSubmit = this.handleSubmit.bind(this);
+                    }
+                    handleChange(event) {
+                      this.setState({
+                        input: event.target.value
+                      });
+                    }
+                    handleSubmit(event) {
+                      event.preventDefault()
+                       this.setState({
+                          submit: this.state.input
+                       });
+                    }
+                    render() {
+                      return (
+                        <div>
+                          <form onSubmit={this.handleSubmit}>
+                           <input 
+                           value = {this.state.input}
+                           onChange = {this.handleChange} />
+                            <button type='submit'>Submit!</button>
+                          </form>
+                          <h1>{this.state.submit}</h1>
+                        </div>
+                      );
+                    }
+                  }
+
+
+
+
+//You may have an App component that renders a Navbar among other components. 
+//You may have a state that contain a lot of users information but the Navbar but the Navbar only needs to access the users so it can display it
+
