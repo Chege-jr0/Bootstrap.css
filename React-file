@@ -1,7 +1,99 @@
 //React cmombines HTML with JavaScript to form JSX which is rendered through the DOM
-//The best way to put HTML init is to nest components
+Here are some terms:
+ 1.A stateless functional component is any function that accepts HTML and returns JSX
+ 2.A stateless component is class that extends React Component but does not use Internal state.
+ 3.A stateful is a component that maintains its own internal state.
+ 4.A state consist of any data that ayour application needs to knew that can change over time.
+
+//The best way to put HTML elements init is to nest components
 //React components are rendered through the call API to the DOM 
-Here is the basic syntax : ReactDOM.render(componentToRender, targetNode).
+    Here is the basic syntax : ReactDOM.render(<componentToRender/>, targetNode).
+    The basic syntax is a little different from the one we are used to in javascript
 //component to render is the name of the compent lets say App and the targetNode is the document.getelementById
 
+//PROPS
+//Props are a way to pass data from a parent component to a child component
+//Props are read only. There are several ways to pass data to the childComponent
+//First they can be passed as argument
+//Second they can be accessed through this.props method like the one we used in a constructor.
+//Props also can be used to pass arrays using the join keyword
 
+//We can create default values for a prop and then override them in the main component
+//Setting the values for the data type number one wraps them in {} arrays: {}, string: ""
+
+//In React we cam use the protoTypes property to define the expected the expected types that a componnt should receive.
+     The syntax is as follows: 
+                         itemName.propTypes = {
+                            props: PropTypes.dataType.isRequired
+                          };
+//There is another way that we can use to access the properties that are in the ES6 functional component using the keyword this
+ for example giving the name to a divion in the main component and then accessing it in the child component like {this.props.name}
+   I think I am more comfortable using this one.
+
+//Here is an example of how to create the stateless functional component with a default value and change the default value.
+                          class CampSite extends React.Component {
+                            constructor(props) {
+                              super(props);
+                            }
+                            render() {
+                              return (
+                                <div>
+                                  <Camper/>
+                                </div>
+                              );
+                            }
+                          };
+                           const Camper = props => <p>{props.name}</p> 
+                          
+                           Camper.defaultProps = {
+                             name: "CamperBot"
+                           }
+                          
+                          Camper.propTypes = {
+                            name: PropTypes.string.isRequired
+                          }
+                          // Change code below this line
+//Here is an exampleof how to create the stateful component whose state is accessed differently.
+                        class StatefulComponent extends React.Component {
+                          constructor(props) {
+                            super(props);
+                            // Only change code below this line
+                             this.state = {
+                              firstName: "Paul"
+                             }
+                            // Only change code above this line
+                          }
+                          render() {
+                            return (
+                              <div>
+                                <h1>{this.state.firstName}</h1>
+                              </div>
+                            );
+                          }
+                        };
+ //N/B: for the accesing of state using this keyword one must extend the React Component
+
+//There is another way to access data through render which is accepts plain JavaScript and then return it in JSX  in the return statement
+                  class MyComponent extends React.Component {
+                    constructor(props) {
+                      super(props);
+                      this.state = {
+                        name: 'freeCodeCamp'
+                      }
+                    }
+                    render() {
+                      // Change code below this line
+                          const name = this.state.name;
+                      // Change code above this line
+                      return (
+                        <div>
+                          { /* Change code below this line */ } 
+                          <h1>{name}</h1>
+                  
+                          { /* Change code above this line */ }
+                        </div>
+                      );
+                    }
+                  };
+//We have accessed the state using this keyword and gievn it a name "name" then access it in the return statement using curly braces
+//Notice we did not use the curly braces in the render method since it accepts plain JavaScript.
