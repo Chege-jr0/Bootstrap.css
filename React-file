@@ -1,0 +1,7 @@
+//React cmombines HTML with JavaScript to form JSX which is rendered through the DOM
+//The best way to put HTML init is to nest components
+//React components are rendered through the call API to the DOM 
+Here is the basic syntax : ReactDOM.render(componentToRender, targetNode).
+//component to render is the name of the compent lets say App and the targetNode is the document.getelementById
+
+
