@@ -1,0 +1,70 @@
+//We have several ways of passing data.
+//The first is the Unidirectional data flow where state flows in one direction down the tree of your application components from stateful parent component to the child component.
+//The second is that complex stateful apps can be broken to just a few or maybe single, stateful component.
+//The rest of your component simply receive state from the parent as props and render a UI from that state.
+//There are different ways that we can pass data to the input field.
+
+//In the example below we have passed the child components GetInput and RenderInput to the render in myApp
+//We have created a prop called input in the GetInput child component and passed a prop called input
+//We have also created a prop handleChange and passed the inputHandler handleChange to it
+//In the RenderInput Child component we have created a prop called input and passed the input value from state to it.
+                 class MyApp extends React.Component {
+                                  constructor(props) {
+                                    super(props);
+                                    this.state = {
+                                      inputValue: ''
+                                    }
+                                    this.handleChange = this.handleChange.bind(this);
+                                  }
+                                  handleChange(event) {
+                                    this.setState({
+                                      inputValue: event.target.value
+                                    });
+                                  }
+                                  render() {
+                                    return (
+                                       <div>
+                                        { /* Change code below this line */ }
+                                        <GetInput
+                                         input = {this.state.inputValue}
+                                         handleChange = {this.handleChange}
+                                        />
+                                        <RenderInput
+                                        input = {this.state.inputValue}
+                                        />
+                                
+                                        { /* Change code above this line */ }
+                                       </div>
+                                    );
+                                  }
+                                };
+                                
+                                class GetInput extends React.Component {
+                                  constructor(props) {
+                                    super(props);
+                                  }
+                                  render() {
+                                    return (
+                                      <div>
+                                        <h3>Get Input:</h3>
+                                        <input
+                                          value={this.props.input}
+                                          onChange={this.props.handleChange}/>
+                                      </div>
+                                    );
+                                  }
+                                };
+                                
+                                class RenderInput extends React.Component {
+                                  constructor(props) {
+                                    super(props);
+                                  }
+                                  render() {
+                                    return (
+                                      <div>
+                                        <h3>Input Render:</h3>
+                                        <p>{this.props.input}</p>
+                                      </div>
+                                    );
+                                  }
+                                };
